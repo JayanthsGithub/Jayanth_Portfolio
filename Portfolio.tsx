@@ -1,0 +1,256 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Link as LinkIcon, Download, Briefcase, Award, GraduationCap, FolderGit2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+// —— Editable profile data ——
+const PROFILE = {
+  name: "Sai Jayanth Sava",
+  title: "Software Engineer — BI & Data",
+  location: "Hyderabad",
+  email: "saijayanthsava4@gmail.com",
+  phone: "9014754234",
+  linkedin: "https://www.linkedin.com/in/sai-jayanth-sava-468482210",
+  summary:
+    "Software Engineer with 1.7 years of experience in Business Intelligence, Data Warehousing, and Reporting. Skilled in Power BI, SQL, SSIS, Snowflake, and Azure DevOps. I also build automations for monitoring and alerts to proactively detect issues and resolve them faster.",
+};
+
+const SKILLS = [
+  { group: "Data & BI Tools", items: ["Power BI (DAX, Data Modeling, Dashboards)", "SSMS", "SSIS (ETL, Automation)"] },
+  { group: "Databases & Cloud", items: ["Snowflake", "Microsoft SQL Server", "Azure DevOps"] },
+  { group: "Programming & Scripting", items: ["SQL (Joins, CTEs, Window Functions, Optimization)"] },
+  { group: "Other Skills", items: ["Data Administration", "Report Automation", "Monitoring & Alerts", "Workflow Optimization"] },
+];
+
+const EXPERIENCE = [
+  {
+    role: "Software Engineer",
+    company: "Aggne – A Wipro Company",
+    period: "Jan 2024 – Present",
+    bullets: [
+      "Designed and optimized SQL queries for multiple business domains.",
+      "Built interactive Power BI dashboards enabling data‑driven decision‑making.",
+      "Automated ETL workflows using SSIS, improving refresh efficiency and reducing manual effort.",
+      "Created email‑alert automations to detect faulty data in reports or source datasets; resolved report issues and escalated source issues to respective teams.",
+      "Acted as Data Administrator ensuring secure access and data reliability.",
+      "Collaborated cross‑functionally using Azure DevOps for tracking and deployments.",
+    ],
+    achievements: [
+      "Reduced report generation time by 20% through SQL optimization.",
+      "Delivered custom Power BI dashboards used by stakeholders for audits and decisions.",
+      "Implemented automation‑based monitoring that improved response time and minimized manual intervention.",
+      "Received appreciation from stakeholders for improving reporting reliability.",
+    ],
+  },
+];
+
+const EDUCATION = [
+  {
+    degree: "B.Tech – Electronics and Communication Engineering",
+    school: "Usha Rama College of Engineering and Technology",
+    year: "2023",
+  },
+];
+
+const CERTS = ["Microsoft Power BI Certification", "SQL Certification"];
+
+const PROJECTS = [
+  {
+    title: "Sales Analytics Dashboard (Power BI)",
+    desc:
+      "Interactive dashboard to track KPIs, revenue trends, and customer behavior; provided actionable insights to stakeholders.",
+    stack: ["Power BI", "DAX", "SQL"],
+  },
+  {
+    title: "Report Building (BI Reports)",
+    desc:
+      "Designed and delivered business‑aligned reports that streamlined month‑end reporting and supported audits.",
+    stack: ["Power BI", "SQL"],
+  },
+  {
+    title: "Automation for Faulty Data Alerts",
+    desc:
+      "Automation that sends email alerts when faulty data is detected in reports or source datasets; improved accuracy and reduced manual monitoring.",
+    stack: ["SSIS", "SQL", "Automation"],
+  },
+];
+
+const Section = ({ id, title, icon, children }: { id: string; title: string; icon?: React.ReactNode; children: React.ReactNode }) => (
+  <section id={id} className="scroll-mt-24">
+    <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+      <div className="flex items-center gap-2 mb-4">
+        {icon}
+        <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+      </div>
+      {children}
+    </motion.div>
+  </section>
+);
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-100">
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        {/* Header */}
+        <header className="mb-8">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">{PROFILE.name}</h1>
+              <p className="text-slate-300">{PROFILE.title}</p>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
+              <span className="inline-flex items-center gap-1"><MapPin className="h-4 w-4" /> {PROFILE.location}</span>
+              <a className="inline-flex items-center gap-1 hover:underline" href={`mailto:${PROFILE.email}`}><Mail className="h-4 w-4" /> {PROFILE.email}</a>
+              <a className="inline-flex items-center gap-1 hover:underline" href={`tel:${PROFILE.phone}`}><Phone className="h-4 w-4" /> {PROFILE.phone}</a>
+              <a className="inline-flex items-center gap-1 hover:underline" href={PROFILE.linkedin} target="_blank" rel="noreferrer"><LinkIcon className="h-4 w-4" /> LinkedIn</a>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Button asChild className="rounded-2xl px-4 py-5">
+                <a href="#projects"><FolderGit2 className="mr-2 h-4 w-4" /> View Projects</a>
+              </Button>
+              <Button variant="secondary" asChild className="rounded-2xl px-4 py-5">
+                <a href="#experience"><Briefcase className="mr-2 h-4 w-4" /> Experience</a>
+              </Button>
+              <Button variant="outline" asChild className="rounded-2xl px-4 py-5">
+                <a href="#contact"><Mail className="mr-2 h-4 w-4" /> Contact</a>
+              </Button>
+            </div>
+          </motion.div>
+        </header>
+
+        {/* Summary */}
+        <Card className="bg-white/5 border-white/10 backdrop-blur mb-8 rounded-2xl shadow-lg">
+          <CardHeader>
+            <CardTitle>About Me</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-slate-300 leading-relaxed">{PROFILE.summary}</p>
+          </CardContent>
+        </Card>
+
+        {/* Skills & Experience grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card className="bg-white/5 border-white/10 rounded-2xl">
+            <CardHeader>
+              <CardTitle>Technical Skills</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {SKILLS.map((s) => (
+                <div key={s.group}>
+                  <p className="font-semibold text-slate-200">{s.group}</p>
+                  <ul className="list-disc ml-5 text-slate-300">
+                    {s.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card id="experience" className="bg-white/5 border-white/10 rounded-2xl">
+            <CardHeader className="flex flex-row items-center gap-2">
+              <Briefcase className="h-5 w-5" />
+              <CardTitle>Professional Experience</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-5">
+              {EXPERIENCE.map((e) => (
+                <div key={e.company}>
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold">{e.role} · {e.company}</p>
+                    <span className="text-sm text-slate-400">{e.period}</span>
+                  </div>
+                  <ul className="list-disc ml-5 text-slate-300 mt-2">
+                    {e.bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-3">
+                    <p className="font-semibold inline-flex items-center gap-2"><Award className="h-4 w-4" /> Key Achievements</p>
+                    <ul className="list-disc ml-5 text-slate-300 mt-1">
+                      {e.achievements.map((a, i) => (
+                        <li key={i}>{a}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Projects */}
+        <Section id="projects" title="Projects" icon={<FolderGit2 className="h-5 w-5" />}> 
+          <div className="grid md:grid-cols-3 gap-4">
+            {PROJECTS.map((p) => (
+              <Card key={p.title} className="bg-white/5 border-white/10 rounded-2xl">
+                <CardHeader>
+                  <CardTitle className="text-base">{p.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-300 text-sm leading-relaxed">{p.desc}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.stack.map((tag: string) => (
+                      <span key={tag} className="text-xs px-2 py-1 rounded-full border border-cyan-400/30 bg-cyan-400/10">{tag}</span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* Education & Certifications */}
+        <div className="grid md:grid-cols-2 gap-6 mt-6">
+          <Card className="bg-white/5 border-white/10 rounded-2xl">
+            <CardHeader className="flex items-center gap-2">
+              <GraduationCap className="h-5 w-5" />
+              <CardTitle>Education</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {EDUCATION.map((ed) => (
+                <div key={ed.school} className="mb-2">
+                  <p className="font-semibold">{ed.degree}</p>
+                  <p className="text-slate-400 text-sm">{ed.school} · {ed.year}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white/5 border-white/10 rounded-2xl">
+            <CardHeader>
+              <CardTitle>Certifications</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc ml-5 text-slate-300">
+                {CERTS.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Contact */}
+        <Section id="contact" title="Get in touch" icon={<Mail className="h-5 w-5" />}> 
+          <Card className="bg-white/5 border-white/10 rounded-2xl">
+            <CardContent className="pt-6">
+              <p className="text-slate-300 mb-4">The fastest way to reach me is email. I usually respond within a day.</p>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild className="rounded-2xl"><a href={`mailto:${PROFILE.email}`}><Mail className="mr-2 h-4 w-4" /> Email</a></Button>
+                <Button variant="secondary" asChild className="rounded-2xl"><a href={PROFILE.linkedin} target="_blank" rel="noreferrer"><LinkIcon className="mr-2 h-4 w-4" /> LinkedIn</a></Button>
+                {/* Replace the href with a public link to your resume when hosted */}
+                <Button variant="outline" asChild className="rounded-2xl"><a href="#" onClick={(e) => e.preventDefault()}><Download className="mr-2 h-4 w-4" /> Download Resume</a></Button>
+              </div>
+            </CardContent>
+          </Card>
+        </Section>
+
+        <footer className="mt-10 text-center text-xs text-slate-400">© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</footer>
+      </div>
+    </div>
+  );
+}
